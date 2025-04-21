@@ -1,0 +1,53 @@
+@startuml
+package cliente {
+  Class Produto {
+    -String nome
+    -Double preco
+    -Categoria categoria
+    -Cliente vendedor
+
+    +getPreco() : Double
+    +getCategoria() : Categoria 
+    +getVendedor() : Vendedor 
+  }
+
+  Class Cliente {
+    -String nome
+    -Endereco[] enderecos
+    -Estoque estoque
+    -Carrinho carrinho
+    -ContaBancaria contaBancaria
+    -MetodoPagamento[] metodosPagamento
+  }
+
+  Class Carrinho {
+    -Item[] produtos
+
+    +getItens() : Item[]
+  }
+
+  Class Estoque {
+    -Item[] produtos
+
+    +getProdutos(Categoria)
+  }
+
+  Class Item {
+    -Produto produto
+    -Integer quantidade
+
+    +getProduto() : Produto
+    +getQuantidade() : Integer
+  }
+}
+Package categoria {
+
+}
+
+Cliente "1" *-- Estoque
+Cliente "1" *-- Carrinho
+Estoque "0.." *-- "0" Item
+Carrinho"0.." *-- "0" Item
+Produto o-- Item
+categoria o- Produto
+@enduml

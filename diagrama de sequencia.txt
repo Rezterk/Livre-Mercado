@@ -1,0 +1,41 @@
+@startuml
+actor Usuário
+Usuário -> Mercado : listeProdutos(categoria)
+Mercado -> Categoria: getProdutos()
+Categoria --> Mercado : produto[]
+Mercado --> Usuário : produto[]
+loop
+   Usuário -> Mercado : selecioneProduto(produto)
+   Mercado --> Usuário
+end
+Usuário -> Mercado : adicioneSelecionadosAoCarrinho()
+loop foreach selecionado
+  Mercado -> Carrinho : adicioneItem(produto, quantidade)
+  Carrinho --> Mercado : ok
+end
+Mercado --> Usuário
+Usuário -> Mercado : finalizeCompra(formaPagamento, enderecoEntrega)
+Mercado -> Cliente : getCarrinho()
+Cliente --> Mercado : carrinho
+Mercado -> Transacionador : efetueCompra(carrinho)
+loop foreach item no carrinho
+  Transacionador -> Produto : getVendedor()
+  Produto --> Transacionador : cliente
+  Transacionador -> Produto : getPreco()
+  Produto --> Transacionador : preco
+  Transacionador -> Produto : retirarQuantidade(quantidade)
+  Produto --> Transacionador : ok
+end
+Transacionador --> Mercado : ok
+Mercado --> Usuário
+Usuário -> Mercado : adicionarProduto(produto)
+Mercado -> Cliente : adicionarProduto(produto)
+Cliente --> Mercado : ok
+Mercado --> Usuário
+Usuário -> Mercado : reporProduto(produto, quantidade)
+Mercado -> Cliente : reporProduto(produto, quantidade)
+Cliente -> Produto : reporUnidades(quantidade)
+Produto --> Cliente 
+Cliente --> Mercado
+Mercado --> Usuário
+@enduml
