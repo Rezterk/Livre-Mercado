@@ -1,0 +1,11 @@
+@startuml
+package contaBancaria{
+  class ContaBancaria {
+    -Double saldo
+  }
+  
+  class MetodoPagamento {
+    
+  }
+}
+@enduml

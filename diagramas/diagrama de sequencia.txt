@@ -1,9 +1,24 @@
 @startuml
 actor Usuário
+Usuário -> Mercado : autenticacao(usuario, senha)
+Mercado -> Autenticador : autentique_se(credencial)
+alt autenticacao válida
+  Autenticador --> Mercado : autenticacao
+  Mercado --> Usuário : ok
+else autenticacao inválida
+  Autenticador --> Mercado : null
+  Mercado --> Usuário : tente novamente
+end
 Usuário -> Mercado : listeProdutos(categoria)
-Mercado -> Categoria: getProdutos()
-Categoria --> Mercado : produto[]
-Mercado --> Usuário : produto[]
+Mercado -> Cliente : getProdutos(categoria)
+Cliente -> Estoque : getProdutos(categoria)
+loop foreach produto
+  Estoque -> Produto : getCategoria()
+  Produto --> Estoque : categoria
+end
+Estoque --> Cliente : produto[]
+Cliente --> Mercado : produto[]
+Mercado --> Usuário
 loop
    Usuário -> Mercado : selecioneProduto(produto)
    Mercado --> Usuário
@@ -23,19 +38,5 @@ loop foreach item no carrinho
   Produto --> Transacionador : cliente
   Transacionador -> Produto : getPreco()
   Produto --> Transacionador : preco
-  Transacionador -> Produto : retirarQuantidade(quantidade)
-  Produto --> Transacionador : ok
 end
-Transacionador --> Mercado : ok
-Mercado --> Usuário
-Usuário -> Mercado : adicionarProduto(produto)
-Mercado -> Cliente : adicionarProduto(produto)
-Cliente --> Mercado : ok
-Mercado --> Usuário
-Usuário -> Mercado : reporProduto(produto, quantidade)
-Mercado -> Cliente : reporProduto(produto, quantidade)
-Cliente -> Produto : reporUnidades(quantidade)
-Produto --> Cliente 
-Cliente --> Mercado
-Mercado --> Usuário
 @enduml
