@@ -1,56 +1,89 @@
 @startuml
 package cliente {
-  Class Produto {
-    -String nome
-    -Double preco
-    -Categoria categoria
-    -Cliente vendedor
-
-    +getPreco() : Double
-    +getCategoria() : Categoria 
-    +getVendedor() : Vendedor 
-  }
 
   Class Cliente {
-    -String nome
-    -Endereco[] enderecos
-    -Estoque estoque
-    -Carrinho carrinho
-    -ContaBancaria contaBancaria
-    -MetodoPagamento[] metodosPagamento
+    -CPF : String
+    -nome : String
+    -enderecos : Endereco[] 
+    -estoque : Estoque 
+    -carrinho : Carrinho 
+    -contaBancaria : ContaBancaria 
+    -metodosPagamento : MetodoPagamento[] 
 
     +getCarrinho() : Carrinho
     +getProdutos(Categoria) : Produto[]
   }
 
   Class Carrinho {
-    -Item[] produtos
+    -produtos : Item[] 
 
     +getItens() : Item[]
+    +addItem(Item)
+    +removeItem(Item)
+    +retirarQuantidade(Item, quantidade)
+    +addQuantidade(Item, quantidade)
   }
 
   Class Estoque {
-    -Item[] produtos
+    -produtos : Item[] 
 
     +getProdutos(Categoria)
+    +addProduto(Item)
+    +removeProduto(Item)
+    +retirarQuantidade(Item, quantidade)
+    +addQuantidade(Item, quantidade)
   }
 
   Class Item {
-    -Produto produto
-    -Integer quantidade
+    -produto : Produto 
+    -quantidade : Integer 
 
     +getProduto() : Produto
     +getQuantidade() : Integer
   }
+
+  Class Produto {
+    -nome : String 
+    -preco : Double 
+    -categoria : Categoria 
+    -vendedor : Cliente 
+
+    +getPreco() : Double
+    +getCategoria() : Categoria 
+    +getVendedor() : Vendedor 
+    +setPreco(preco)
+  }
 }
+
 Package categoria {
 
 }
 
-Cliente "1" *-- Estoque
-Cliente "1" *-- Carrinho
-Estoque "0.." *-- "0" Item
-Carrinho"0.." *-- "0" Item
-Produto o-- Item
-categoria o- Produto
+Package contaBancaria {
+
+}
+
+Package endereco {
+
+  Class Endereco {
+    -logradouro : String 
+    -numero : String 
+    -CEP : String 
+    
+    +getLogradouro() : String
+    +getNumero() : String
+    +getCEP() : String
+  }
+
+}
+
+Cliente *-- Estoque
+Cliente *-- Carrinho
+Cliente *- contaBancaria
+Cliente *- "0..*" Endereco
+Estoque "0..*" *-- Item
+Carrinho"0..*" *-- Item
+Cliente --o Produto
+Produto --o Item
+Produto o-- categoria
 @enduml

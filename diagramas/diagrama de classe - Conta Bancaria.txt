@@ -1,7 +1,7 @@
 @startuml
 package contaBancaria{
   class ContaBancaria {
-    -Double saldo
+    -saldo : BigDecimal
   }
   
   class MetodoPagamento {

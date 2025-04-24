@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/Prog/faculdade/POO%20II/LivreMercado/src/Main.java</file>
+            <file>file:/E:/Prog/faculdade/POO%20II/LivreMercado/src/model/autenticador/AutenticadorDefault.java</file>
+            <file>file:/E:/Prog/faculdade/POO%20II/LivreMercado/src/model/autenticador/Autenticador_if.java</file>
+            <file>file:/E:/Prog/faculdade/POO%20II/LivreMercado/src/model/autenticador/Autenticacao.java</file>
+            <file>file:/E:/Prog/faculdade/POO%20II/LivreMercado/src/model/autenticador/CredencialLoginSenha.java</file>
+            <file>file:/E:/Prog/faculdade/POO%20II/LivreMercado/src/model/autenticador/Credencial_if.java</file>
+        </group>
     </open-files>
 </project-private>
