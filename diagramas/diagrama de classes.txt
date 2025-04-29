@@ -1,14 +1,11 @@
 @startuml
-
-
-  Class Cliente {
+Class Cliente {
     -CPF : String
     -nome : String
     -enderecos : Endereco[] 
     -estoque : ColecaoItens
     -carrinho : ColecaoItens
     -contaBancaria : ContaBancaria 
-    -metodosPagamento : MetodoPagamento[] 
 
     +getCarrinho() : Carrinho
     +getProdutos(Categoria) : Produto[]
@@ -58,6 +55,7 @@
     -saldo : Double
     -credito : Double
     -limiteCredito : Double
+    -metodosPagamento : MetodoPagamento[]
 
     +depositar(quantia)
     +retirar(quantia)
@@ -71,20 +69,14 @@
   }
 
   Class Pix {
-    -contaVinculada : ContaBancaria
-
     +pague()
   }
 
   Class CartaoCredito {
-    -contaVinculada : ContaBancaria
-
     +pague()
   }
 
   Class Transferencia {
-    -contaVinculada : ContaBancaria
-
     +pague()
   }
 
@@ -155,13 +147,12 @@
 Cliente "2" *-- ColecaoItens
 Cliente *-- "0..*" Endereco
 Cliente *- ContaBancaria
-Cliente *-- MetodoPagamento
 
 ColecaoItens "0..*" *-- Item
 Cliente --o Produto
 Produto --o Item
 
-ContaBancaria --o MetodoPagamento
+ContaBancaria *-- MetodoPagamento
 MetodoPagamento <|-- Pix
 MetodoPagamento <|-- CartaoCredito
 MetodoPagamento <|-- Transferencia
