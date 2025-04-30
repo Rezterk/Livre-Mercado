@@ -5,8 +5,8 @@
 package model;
 
 import model.autenticador.Autenticador_if;
-import model.categoria.Categoria;
-import model.categoria.Categoria_if;
+import model.cliente.Categoria;
+import model.cliente.Categoria_if;
 
 /**
  *

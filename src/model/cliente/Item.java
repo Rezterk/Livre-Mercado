@@ -11,10 +11,34 @@ package model.cliente;
 class Item {
     public Item(Produto produto, Integer quantidade) {
         if (quantidade < 0)
-            throw new IllegalArgumentException("Quantidade não pode ser < 0");
+            throw new IllegalArgumentException("Quantidade não pode ser < 0.");
         
         this.produto = produto;
         this.quantidade = quantidade;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+    
+    void addQuantidade(Integer quantidade) throws IllegalArgumentException {
+        if (quantidade < 0)
+            throw new IllegalArgumentException("Não é possível adicionar uma quantidade negativa");
+        
+        this.quantidade += quantidade;
+    }
+    
+    void removeQuantidade(Integer quantidade) throws IllegalArgumentException {
+        if (quantidade < 0)
+            throw new IllegalArgumentException("Não é possível subtrair uma quantidade negativa");
+        if (quantidade > this.quantidade)
+            throw new IllegalArgumentException("Quantidade indisponível para subtrair");
+        
+        this.quantidade -= quantidade;
     }
     
     private Produto produto;
