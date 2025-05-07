@@ -4,13 +4,17 @@
  */
 package model.cliente;
 
+import model.categoria.Categoria;
+
 /**
  *
  * @author rezterk
  */
-class Produto {
+public class Produto {
     
-    Produto(String nome, Double preco, Categoria categoria, Cliente vendedor) {
+    public Produto(String nome, Double preco, Categoria categoria, Cliente vendedor) {
+        if (vendedor == null)
+            throw new IllegalArgumentException("Vendedor não pode ser nulo");
         if (preco <= 0)
             throw new IllegalArgumentException("Preço não pode ser <= 0");
         
@@ -28,7 +32,10 @@ class Produto {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(Double preco) throws IllegalArgumentException {
+        if (preco <= 0)
+            throw new IllegalArgumentException("Preço não pode ser <= 0");
+        
         this.preco = preco;
     }
 
@@ -44,7 +51,15 @@ class Produto {
         return vendedor;
     }
     
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Produto produto = (Produto) obj;
+        return (this.nome.equals(produto.nome) && this.preco == produto.preco
+                && this.categoria.equals(produto.categoria)
+                && this.vendedor.equals(produto.vendedor));
+    }
     
     private String nome;
     private Double preco;

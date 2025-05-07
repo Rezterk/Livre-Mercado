@@ -2,13 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package livremercado;
+package model.cliente;
 
 /**
  *
  * @author kretz
  */
-public class Main {
-    public static void main(String[] args) {
+public class Pix extends MetodoPagamento {
+    public Pix(ContaBancaria contaVinculada) {
+        super(contaVinculada);
+    }
+    
+    @Override
+    public void pague() {
+        
     }
 }

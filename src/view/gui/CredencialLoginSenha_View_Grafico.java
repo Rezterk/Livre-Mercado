@@ -71,8 +71,15 @@ public class CredencialLoginSenha_View_Grafico extends javax.swing.JDialog imple
         buttonCancela = new javax.swing.JButton();
         buttonOk = new javax.swing.JButton();
 
+        FormListener formListener = new FormListener();
+
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("view/gui/Bundle"); // NOI18N
         setTitle(bundle.getString("CredencialLoginSenha_View_Grafico.title")); // NOI18N
+        setMaximumSize(new java.awt.Dimension(450, 200));
+        setMinimumSize(new java.awt.Dimension(242, 110));
+        setModal(true);
+        setPreferredSize(new java.awt.Dimension(400, 150));
+        setSize(new java.awt.Dimension(400, 150));
 
         labelLogin.setText(bundle.getString("CredencialLoginSenha_View_Grafico.labelLogin.text")); // NOI18N
 
@@ -83,25 +90,17 @@ public class CredencialLoginSenha_View_Grafico extends javax.swing.JDialog imple
         passwTextSenha.setText(bundle.getString("CredencialLoginSenha_View_Grafico.passwTextSenha.text")); // NOI18N
 
         buttonCancela.setText(bundle.getString("CredencialLoginSenha_View_Grafico.buttonCancela.text")); // NOI18N
-        buttonCancela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelaActionPerformed(evt);
-            }
-        });
+        buttonCancela.addActionListener(formListener);
 
         buttonOk.setText(bundle.getString("CredencialLoginSenha_View_Grafico.buttonOk.text")); // NOI18N
-        buttonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonOkActionPerformed(evt);
-            }
-        });
+        buttonOk.addActionListener(formListener);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
+                .addContainerGap(207, Short.MAX_VALUE)
                 .addComponent(buttonOk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCancela)
@@ -146,7 +145,7 @@ public class CredencialLoginSenha_View_Grafico extends javax.swing.JDialog imple
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSenha)
                     .addComponent(passwTextSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -154,6 +153,21 @@ public class CredencialLoginSenha_View_Grafico extends javax.swing.JDialog imple
         getAccessibleContext().setAccessibleName(bundle.getString("CredencialLoginSenha_View_Grafico.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
+        setLocationRelativeTo(null);
+    }
+
+    // Code for dispatching events from components to event handlers.
+
+    private class FormListener implements java.awt.event.ActionListener {
+        FormListener() {}
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            if (evt.getSource() == buttonCancela) {
+                CredencialLoginSenha_View_Grafico.this.buttonCancelaActionPerformed(evt);
+            }
+            else if (evt.getSource() == buttonOk) {
+                CredencialLoginSenha_View_Grafico.this.buttonOkActionPerformed(evt);
+            }
+        }
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
@@ -164,7 +178,7 @@ public class CredencialLoginSenha_View_Grafico extends javax.swing.JDialog imple
     private void buttonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaActionPerformed
         String login = textLogin.getText();
         String senha = passwTextSenha.getText();//getPassword();
-        if (login==""||senha=="") {
+        if (login.equals("")||senha.equals("")) {
             JOptionPane.showMessageDialog(this, "Login e senha precisam ser definidos", "Credencial", JOptionPane.WARNING_MESSAGE);
         } else {
             model = new CredencialLoginSenha(login, senha);
@@ -175,47 +189,6 @@ public class CredencialLoginSenha_View_Grafico extends javax.swing.JDialog imple
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CredencialLoginSenha_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CredencialLoginSenha_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CredencialLoginSenha_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CredencialLoginSenha_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CredencialLoginSenha_View_Grafico dialog = new CredencialLoginSenha_View_Grafico(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-
-                });
-                dialog.setVisible(true);
-            }
-
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancela;

@@ -10,24 +10,38 @@ import java.util.ArrayList;
  *
  * @author rezterk
  */
-class ColecaoItens {
+public class ColecaoItens {
     
     public ArrayList<Item> getItens() {
         return itens;
     }
     
-    void addItem(Item item) throws IllegalArgumentException {
-        if (item == null)
-            throw new IllegalArgumentException("Item não pode ser nulo");
-        
-        itens.add(item);
+    public void addItem(Produto produto, int quantidade) throws IllegalArgumentException {
+        for(Item item : itens) {
+            if(item.getProduto().equals(produto)) {
+                item.addQuantidade(quantidade);
+                return;
+            }
+        }
+        itens.add(new Item(produto, quantidade));
     }
     
-    void removeItem(Item item) throws IllegalArgumentException {
-        if (item == null || !itens.contains(item))
-            throw new IllegalArgumentException("Item não pode ser nulo");
-        
-        itens.remove(item);
+    void removeItem(Produto produto) {
+        for(Item item : itens) {
+            if(item.getProduto().equals(produto)){
+                itens.remove(item);
+                return;
+            }
+        }
+    }
+    
+    void reduzaQuantidadeItem(Produto produto, int quantidade) throws IllegalArgumentException{
+        for(Item item : itens) {
+            if(item.getProduto().equals(produto)) {
+                item.removeQuantidade(quantidade);
+                return;
+            }
+        }
     }
     
     private ArrayList<Item> itens;

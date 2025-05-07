@@ -8,10 +8,12 @@ package model.cliente;
  *
  * @author rezterk
  */
-class Item {
+public class Item {
     public Item(Produto produto, Integer quantidade) {
+        if (produto == null)
+            throw new IllegalArgumentException("Produto não pode ser nulo");
         if (quantidade < 0)
-            throw new IllegalArgumentException("Quantidade não pode ser < 0.");
+            throw new IllegalArgumentException("Quantidade não pode ser < 0");
         
         this.produto = produto;
         this.quantidade = quantidade;
@@ -25,14 +27,14 @@ class Item {
         return quantidade;
     }
     
-    void addQuantidade(Integer quantidade) throws IllegalArgumentException {
+    void addQuantidade(int quantidade) throws IllegalArgumentException {
         if (quantidade < 0)
             throw new IllegalArgumentException("Não é possível adicionar uma quantidade negativa");
         
         this.quantidade += quantidade;
     }
     
-    void removeQuantidade(Integer quantidade) throws IllegalArgumentException {
+    void removeQuantidade(int quantidade) throws IllegalArgumentException {
         if (quantidade < 0)
             throw new IllegalArgumentException("Não é possível subtrair uma quantidade negativa");
         if (quantidade > this.quantidade)
@@ -42,5 +44,5 @@ class Item {
     }
     
     private Produto produto;
-    private Integer quantidade;
+    private int quantidade;
 }

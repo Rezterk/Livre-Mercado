@@ -8,7 +8,9 @@ import model.Fabrica;
 import model.LivreMercado;
 import model.autenticador.Autenticador_if;
 import model.autenticador.Credencial_if;
+import model.cliente.Cliente;
 import view.Autenticador_View;
+import view.Cliente_View;
 import view.LivreMercado_View;
 import view.terminal.Autenticador_View_Textual;
 import view.Credencial_View;
@@ -33,6 +35,11 @@ public class Fabrica_Textual extends Fabrica {
     @Override
     public Credencial_View new_Credencial_View(Credencial_if model) {
         return new CredencialLoginSenha_View_Textual(model);
+    }
+
+    @Override
+    public Cliente_View new_Cliente_View(Cliente model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

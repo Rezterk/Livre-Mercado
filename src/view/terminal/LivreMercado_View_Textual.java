@@ -39,6 +39,9 @@ public class LivreMercado_View_Textual implements LivreMercado_View {
                     System.out.println("Voce se autenticou com sucesso");
                 }
             }
+        } else {
+            // já se autenticou
+            // mostra menu com opções
         }
     }
     

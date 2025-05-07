@@ -10,6 +10,7 @@ import model.LivreMercado;
 import model.autenticador.Autenticacao;
 import model.autenticador.Credencial_if;
 import model.fabrica.Fabrica_Grafica;
+import view.Cliente_View;
 import view.Credencial_View;
 import view.LivreMercado_View;
 
@@ -38,34 +39,157 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        splitPrincipalVertical = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        textPesquisaProdutos = new javax.swing.JTextField();
         painelSplitPrincipal = new javax.swing.JSplitPane();
         painelScrollPrincipal = new javax.swing.JScrollPane();
         painelScrollEsquerdo = new javax.swing.JScrollPane();
         arvoreCategorias = new javax.swing.JTree();
         menuPrincipal = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menuSistema = new javax.swing.JMenu();
+        itemSistemaCarregar = new javax.swing.JMenuItem();
+        itemSistemaSalvar = new javax.swing.JMenuItem();
+        itemSistemaAutenticar = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        itemSistemaSair = new javax.swing.JMenuItem();
+        menuMercado = new javax.swing.JMenu();
+        itemMercadoClientes = new javax.swing.JMenuItem();
+        itemMercadoCategorias = new javax.swing.JMenuItem();
+        itemMercadoProdutos = new javax.swing.JMenuItem();
+        menuSobre = new javax.swing.JMenu();
+
+        FormListener formListener = new FormListener();
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LivreMercado");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        addWindowListener(formListener);
+
+        splitPrincipalVertical.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        jLabel2.setText("LivreMercado Topbar");
+
+        jLabel1.setText("Icon");
+
+        textPesquisaProdutos.addActionListener(formListener);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(textPesquisaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(textPesquisaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        splitPrincipalVertical.setLeftComponent(jPanel1);
 
         painelSplitPrincipal.setRightComponent(painelScrollPrincipal);
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Categorias");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("colors");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("blue");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("violet");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("red");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("yellow");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("sports");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("basketball");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("soccer");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("football");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hockey");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("food");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hot dogs");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("pizza");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ravioli");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("bananas");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        arvoreCategorias.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         arvoreCategorias.setPreferredSize(new java.awt.Dimension(150, 78));
         painelScrollEsquerdo.setViewportView(arvoreCategorias);
 
         painelSplitPrincipal.setLeftComponent(painelScrollEsquerdo);
 
-        jMenu1.setText("File");
-        menuPrincipal.add(jMenu1);
+        splitPrincipalVertical.setBottomComponent(painelSplitPrincipal);
 
-        jMenu2.setText("Edit");
-        menuPrincipal.add(jMenu2);
+        menuSistema.setText("Sistema");
+
+        itemSistemaCarregar.setText("Carregar");
+        itemSistemaCarregar.addActionListener(formListener);
+        menuSistema.add(itemSistemaCarregar);
+
+        itemSistemaSalvar.setText("Salvar");
+        itemSistemaSalvar.addActionListener(formListener);
+        menuSistema.add(itemSistemaSalvar);
+
+        itemSistemaAutenticar.setText("Autenticar");
+        itemSistemaAutenticar.addActionListener(formListener);
+        menuSistema.add(itemSistemaAutenticar);
+        menuSistema.add(jSeparator1);
+
+        itemSistemaSair.setText("Sair");
+        itemSistemaSair.addActionListener(formListener);
+        menuSistema.add(itemSistemaSair);
+
+        menuPrincipal.add(menuSistema);
+
+        menuMercado.setText("Mercado");
+
+        itemMercadoClientes.setText("Clientes");
+        itemMercadoClientes.addActionListener(formListener);
+        menuMercado.add(itemMercadoClientes);
+
+        itemMercadoCategorias.setText("Categorias");
+        itemMercadoCategorias.addActionListener(formListener);
+        menuMercado.add(itemMercadoCategorias);
+
+        itemMercadoProdutos.setText("Produtos");
+        itemMercadoProdutos.addActionListener(formListener);
+        menuMercado.add(itemMercadoProdutos);
+
+        menuPrincipal.add(menuMercado);
+
+        menuSobre.setText("Sobre");
+        menuPrincipal.add(menuSobre);
 
         setJMenuBar(menuPrincipal);
 
@@ -75,42 +199,143 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelSplitPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                .addComponent(splitPrincipalVertical, javax.swing.GroupLayout.PREFERRED_SIZE, 784, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelSplitPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(splitPrincipalVertical, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleName("framePrincipal");
 
         pack();
+        setLocationRelativeTo(null);
+    }
+
+    // Code for dispatching events from components to event handlers.
+
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.WindowListener {
+        FormListener() {}
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            if (evt.getSource() == textPesquisaProdutos) {
+                LivreMercado_View_Grafico.this.textPesquisaProdutosActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemSistemaCarregar) {
+                LivreMercado_View_Grafico.this.itemSistemaCarregarActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemSistemaSalvar) {
+                LivreMercado_View_Grafico.this.itemSistemaSalvarActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemSistemaSair) {
+                LivreMercado_View_Grafico.this.itemSistemaSairActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemMercadoClientes) {
+                LivreMercado_View_Grafico.this.itemMercadoClientesActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemMercadoCategorias) {
+                LivreMercado_View_Grafico.this.itemMercadoCategoriasActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemMercadoProdutos) {
+                LivreMercado_View_Grafico.this.itemMercadoProdutosActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemSistemaAutenticar) {
+                LivreMercado_View_Grafico.this.itemSistemaAutenticarActionPerformed(evt);
+            }
+        }
+
+        public void windowActivated(java.awt.event.WindowEvent evt) {
+        }
+
+        public void windowClosed(java.awt.event.WindowEvent evt) {
+        }
+
+        public void windowClosing(java.awt.event.WindowEvent evt) {
+        }
+
+        public void windowDeactivated(java.awt.event.WindowEvent evt) {
+        }
+
+        public void windowDeiconified(java.awt.event.WindowEvent evt) {
+        }
+
+        public void windowIconified(java.awt.event.WindowEvent evt) {
+        }
+
+        public void windowOpened(java.awt.event.WindowEvent evt) {
+            if (evt.getSource() == LivreMercado_View_Grafico.this) {
+                LivreMercado_View_Grafico.this.formWindowOpened(evt);
+            }
+        }
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (model.getAutenticador().getAutenticacao()==null) {
-            Credencial_View credencialView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Credencial_View(this, true, null);
-            credencialView.setCredencial();
-            if (credencialView.getModel()==null) {
-                //System.out.println("Sua credencial nao foi criada");
-                JOptionPane.showMessageDialog(this, "Sua credencial nao foi criada", "Credencial", JOptionPane.WARNING_MESSAGE);
-            } else {
-                Credencial_if credencial = credencialView.getModel();
-                Autenticacao autenticacao = model.getAutenticador().autentique_se(credencial);
-                if (autenticacao==null) {
-                    //System.out.println("Autenticacao falhou");
-                    JOptionPane.showMessageDialog(this, "Autenticacao falhou", "Autenticacao", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    //System.out.println("Voce se autenticou com sucesso");
-                    JOptionPane.showMessageDialog(this, "Voce se autenticou com sucesso", "Autenticacao", JOptionPane.PLAIN_MESSAGE);
-                }
-            }
+        if (model.getAutenticador().getAutenticacao() == null) {
+            itemSistemaAutenticarActionPerformed(null);
+        } else {
+            // já se autenticou
+            // mostra menu
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void itemSistemaCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSistemaCarregarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_itemSistemaCarregarActionPerformed
+
+    private void itemSistemaSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSistemaSalvarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_itemSistemaSalvarActionPerformed
+
+    private void itemSistemaSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSistemaSairActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_itemSistemaSairActionPerformed
+
+    private void itemMercadoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoClientesActionPerformed
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);       
+        Cliente_View clienteView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Cliente_View(this, true, null);
+        clienteView.mostre();
+    }//GEN-LAST:event_itemMercadoClientesActionPerformed
+
+    private void itemMercadoCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoCategoriasActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_itemMercadoCategoriasActionPerformed
+
+    private void itemMercadoProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoProdutosActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_itemMercadoProdutosActionPerformed
+
+    private void textPesquisaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPesquisaProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPesquisaProdutosActionPerformed
+
+    private void itemSistemaAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSistemaAutenticarActionPerformed
+        Credencial_View credencialView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Credencial_View(this, true, null);
+        credencialView.setCredencial();
+        if (credencialView.getModel() == null) {
+            //System.out.println("Sua credencial nao foi criada");
+            JOptionPane.showMessageDialog(this, "Sua credencial nao foi criada", "Credencial", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Credencial_if credencial = credencialView.getModel();
+            autenticacao = model.getAutenticador().autentique_se(credencial);
+            if (autenticacao == null) {
+                //System.out.println("Autenticacao falhou");
+                JOptionPane.showMessageDialog(this, "Autenticacao falhou", "Autenticacao", JOptionPane.WARNING_MESSAGE);
+            } else {
+                //System.out.println("Voce se autenticou com sucesso");
+                JOptionPane.showMessageDialog(this, "Voce se autenticou com sucesso", "Autenticacao", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
+        atualizeMenu();
+    }//GEN-LAST:event_itemSistemaAutenticarActionPerformed
 
     @Override
     public void mostre() {
@@ -121,11 +346,38 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arvoreCategorias;
+    private javax.swing.JMenuItem itemMercadoCategorias;
+    private javax.swing.JMenuItem itemMercadoClientes;
+    private javax.swing.JMenuItem itemMercadoProdutos;
+    private javax.swing.JMenuItem itemSistemaAutenticar;
+    private javax.swing.JMenuItem itemSistemaCarregar;
+    private javax.swing.JMenuItem itemSistemaSair;
+    private javax.swing.JMenuItem itemSistemaSalvar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu menuMercado;
     private javax.swing.JMenuBar menuPrincipal;
+    private javax.swing.JMenu menuSistema;
+    private javax.swing.JMenu menuSobre;
     private javax.swing.JScrollPane painelScrollEsquerdo;
     private javax.swing.JScrollPane painelScrollPrincipal;
     private javax.swing.JSplitPane painelSplitPrincipal;
+    private javax.swing.JSplitPane splitPrincipalVertical;
+    private javax.swing.JTextField textPesquisaProdutos;
     // End of variables declaration//GEN-END:variables
+
+    Autenticacao autenticacao;
+
+    {
+        autenticacao = null;
+    }
+
+    private void atualizeMenu() {
+        menuMercado.setEnabled(autenticacao != null);
+        itemSistemaAutenticar.setEnabled(autenticacao == null);
+    }
 }

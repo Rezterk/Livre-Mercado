@@ -15,6 +15,56 @@ public class Cliente {
         this.CPF = CPF;
         this.nome = nome;
     }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public ArrayList<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public ColecaoItens getEstoque() {
+        return estoque;
+    }
+
+    public ColecaoItens getCarrinho() {
+        return carrinho;
+    }
+
+    public ArrayList<ContaBancaria> getContaBancaria() {
+        return contaBancaria;
+    }
+    
+    public void addEndereco(Endereco novoEndereco) {
+        if(novoEndereco != null && !enderecos.contains(novoEndereco))
+            enderecos.add(novoEndereco);
+    }
+    
+    public void removeEndereco(Endereco remEndereco) {
+        for(Endereco endereco : enderecos) {
+            if(endereco.equals(remEndereco)) {
+                enderecos.remove(endereco);
+                return;
+            }
+        }
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Cliente cliente = (Cliente) obj;
+        return this.CPF.equals(cliente);
+    }
     
     private final String CPF;
     private String nome;
@@ -25,5 +75,7 @@ public class Cliente {
     {
         enderecos = new ArrayList<>();
         contaBancaria = new ArrayList<>();
+        estoque = new ColecaoItens();
+        carrinho = new ColecaoItens();
     }
 }

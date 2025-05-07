@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package livremercado;
+package view;
 
 /**
  *
- * @author kretz
+ * @author rafael.cancian
  */
-public class Vendedor extends Cliente{
-    
+public interface Cliente_View {
+    void mostre();
 }

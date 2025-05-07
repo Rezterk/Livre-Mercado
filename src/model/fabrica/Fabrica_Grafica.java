@@ -4,11 +4,14 @@
  */
 package model.fabrica;
 
+import view.gui.Cliente_View_Grafico;
 import model.Fabrica;
 import model.LivreMercado;
 import model.autenticador.Autenticador_if;
 import model.autenticador.Credencial_if;
+import model.cliente.Cliente;
 import view.Autenticador_View;
+import view.Cliente_View;
 import view.Credencial_View;
 import view.LivreMercado_View;
 import view.gui.Autenticador_View_Grafico;
@@ -37,6 +40,15 @@ public class Fabrica_Grafica extends Fabrica {
     @Override
     public LivreMercado_View new_LivreMercado_View(LivreMercado model) {
         return new LivreMercado_View_Grafico(model);
+    }
+
+    public Cliente_View new_Cliente_View(java.awt.Frame parent, boolean modal, Cliente model) {
+        return new Cliente_View_Grafico(parent, modal, model);
+    }
+
+    @Override
+    public Cliente_View new_Cliente_View(Cliente model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

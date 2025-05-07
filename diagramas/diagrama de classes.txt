@@ -8,7 +8,7 @@ Class Cliente {
     -contaBancaria : ContaBancaria 
 
     +getCarrinho() : Carrinho
-    +getProdutos(Categoria) : Produto[]
+    +getProdutos() : Produto[]
   }
 
   Class ColecaoItens {
@@ -80,32 +80,16 @@ Class Cliente {
     +pague()
   }
 
-  Abstract CategoriaAbstrata {
+  Class Categoria {
     -nome : String
     -produtos : Produto[]
+    -filhas : Categoria[]
 
     +getProdutos() : Produto[]
     +getNome() : String
-  }
-
-  Class CategoriaConcreta {
-    -nome : String
-    -produtos : Produto[]
-
-    +getProdutos() : Produto[]
-    +getNome() : String
-  }
-
-  Class CategoriaComposta {
-    -nome : String
-    -produtos : Produto[]
-    -filhas : CategoriaAbstrata[]
-    
-    +add(CategoriaAbstrata)
-    +remove(CategoriaAbstrata)
-    +getFilhas() : CategoriaAbstrata
-    +getProdutos() : Produto[]
-    +getNome() : String
+    +getFilhas() : Categoria[]
+    +addFilha(Categoria)
+    +removeFilha(Categoria)
   }
 
   Interface Autenticador_if {
@@ -145,22 +129,19 @@ Class Cliente {
 
 
 Cliente "2" *-- ColecaoItens
-Cliente *-- "0..*" Endereco
+Cliente "0..*" *-- Endereco
 Cliente *- ContaBancaria
 
 ColecaoItens "0..*" *-- Item
 Cliente --o Produto
 Produto --o Item
 
-ContaBancaria *-- MetodoPagamento
+ContaBancaria "0..*" *--> "1" MetodoPagamento
 MetodoPagamento <|-- Pix
 MetodoPagamento <|-- CartaoCredito
 MetodoPagamento <|-- Transferencia
 
-Produto o-- CategoriaAbstrata
-CategoriaAbstrata <|-- CategoriaConcreta
-CategoriaAbstrata <|-- CategoriaComposta
-CategoriaAbstrata <--o CategoriaComposta
+Produto o-- Categoria
 
 Autenticador_if <|.. AutenticadorDefault
 AutenticadorDefault o- Autenticacao
