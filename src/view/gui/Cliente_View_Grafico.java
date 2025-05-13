@@ -4,8 +4,12 @@
  */
 package view.gui;
 
+import java.text.ParseException;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 import model.cliente.Cliente;
 import view.Cliente_View;
 
@@ -24,6 +28,18 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         super(parent, modal);
         initComponents();
         AbstractFormatter formatter = formattedCPF.getFormatter();
+        formattedCPF.setFormatterFactory(new AbstractFormatterFactory() {
+            @Override
+            public AbstractFormatter getFormatter(JFormattedTextField tf) {
+                try {
+                    return new MaskFormatter("###.###.###-##");
+                } catch (ParseException ex) {
+                    
+                }
+                return null;
+            }
+            
+        });
         this.model = model;
     }
 
@@ -41,7 +57,7 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         textNome = new javax.swing.JTextField();
         labelCPF = new javax.swing.JLabel();
         formattedCPF = new javax.swing.JFormattedTextField();
-        jPanel1 = new javax.swing.JPanel();
+        panelBotoes = new javax.swing.JPanel();
         buttonCancela = new javax.swing.JButton();
         buttonOk = new javax.swing.JButton();
 
@@ -56,6 +72,8 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         labelNome.setText("Nome:");
 
         labelCPF.setText("CPF:");
+
+        formattedCPF.setColumns(11);
 
         javax.swing.GroupLayout panelInformacosGeraisLayout = new javax.swing.GroupLayout(panelInformacosGerais);
         panelInformacosGerais.setLayout(panelInformacosGeraisLayout);
@@ -93,22 +111,22 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         buttonOk.setText(bundle.getString("CredencialLoginSenha_View_Grafico.buttonOk.text")); // NOI18N
         buttonOk.addActionListener(formListener);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
+        panelBotoes.setLayout(panelBotoesLayout);
+        panelBotoesLayout.setHorizontalGroup(
+            panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotoesLayout.createSequentialGroup()
                 .addContainerGap(221, Short.MAX_VALUE)
                 .addComponent(buttonOk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCancela)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelBotoesLayout.setVerticalGroup(
+            panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancela)
                     .addComponent(buttonOk))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -122,7 +140,7 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelInformacosGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,7 +149,7 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
                 .addContainerGap()
                 .addComponent(panelInformacosGerais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -145,29 +163,29 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == buttonCancela) {
-                Cliente_View_Grafico.this.buttonCancelaActionPerformed(evt);
+                Cliente_View_Grafico.this.buttonOkActionPerformed(evt);
             }
             else if (evt.getSource() == buttonOk) {
-                Cliente_View_Grafico.this.buttonOkActionPerformed(evt);
+                Cliente_View_Grafico.this.buttonCancelaActionPerformed(evt);
             }
         }
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaActionPerformed
+    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
         String nome = textNome.getText();
         String cpf = formattedCPF.getText();
         if (nome.equals("")||cpf.equals("")) {
             JOptionPane.showMessageDialog(this, "As informações do cliente precisam ser definidos", "Cliente", JOptionPane.WARNING_MESSAGE);
         } else {
-            model = new Cliente(nome, cpf);
+            model = new Cliente(nome, cpf, null);
             setVisible(false);
         }
-    }//GEN-LAST:event_buttonCancelaActionPerformed
+    }//GEN-LAST:event_buttonOkActionPerformed
 
-    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
+    private void buttonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaActionPerformed
         model = null;
         setVisible(false);
-    }//GEN-LAST:event_buttonOkActionPerformed
+    }//GEN-LAST:event_buttonCancelaActionPerformed
 
     @Override
     public void mostre() {
@@ -184,9 +202,9 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
     private javax.swing.JButton buttonCancela;
     private javax.swing.JButton buttonOk;
     private javax.swing.JFormattedTextField formattedCPF;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelCPF;
     private javax.swing.JLabel labelNome;
+    private javax.swing.JPanel panelBotoes;
     private javax.swing.JPanel panelInformacosGerais;
     private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables

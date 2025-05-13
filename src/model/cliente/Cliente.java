@@ -13,9 +13,10 @@ import java.util.List;
  */
 public class Cliente {
     
-    public Cliente(String CPF, String nome) {
+    public Cliente(String CPF, String nome, Endereco endereco) {
         this.CPF = CPF;
         this.nome = nome;
+        this.endereco = endereco;
     }
 
     public String getCPF() {
@@ -75,6 +76,7 @@ public class Cliente {
     private final String CPF;
     private String nome;
     private ArrayList<Endereco> enderecos;
+    private Endereco endereco;
     private ColecaoItens estoque;
     private ColecaoItens carrinho;
     private ArrayList<ContaBancaria> contasBancarias;
