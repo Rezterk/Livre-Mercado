@@ -301,6 +301,9 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);       
         Cliente_View clienteView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Cliente_View(this, true, null);
         clienteView.mostre();
+        if (clienteView.getModel() != null) {
+            JOptionPane.showMessageDialog(this, "Novo cliente foi criado", "Cliente", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_itemMercadoClientesActionPerformed
 
     private void itemMercadoCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoCategoriasActionPerformed

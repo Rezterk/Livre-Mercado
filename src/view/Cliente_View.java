@@ -4,10 +4,13 @@
  */
 package view;
 
+import model.cliente.Cliente;
+
 /**
  *
  * @author rafael.cancian
  */
 public interface Cliente_View {
     void mostre();
+    Cliente getModel();
 }

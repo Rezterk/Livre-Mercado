@@ -4,6 +4,8 @@
  */
 package model.cliente;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -40,8 +42,12 @@ public class Cliente {
         return carrinho;
     }
 
-    public ArrayList<ContaBancaria> getContaBancaria() {
-        return contaBancaria;
+    public List<ContaBancaria> getContasBancarias() {
+        return Collections.unmodifiableList(contasBancarias);
+    }
+    
+    public void addContaBancaria(String numeroConta) {
+        contasBancarias.add(new ContaBancaria(numeroConta));
     }
     
     public void addEndereco(Endereco novoEndereco) {
@@ -71,10 +77,10 @@ public class Cliente {
     private ArrayList<Endereco> enderecos;
     private ColecaoItens estoque;
     private ColecaoItens carrinho;
-    private ArrayList<ContaBancaria> contaBancaria;
+    private ArrayList<ContaBancaria> contasBancarias;
     {
         enderecos = new ArrayList<>();
-        contaBancaria = new ArrayList<>();
+        contasBancarias = new ArrayList<>();
         estoque = new ColecaoItens();
         carrinho = new ColecaoItens();
     }

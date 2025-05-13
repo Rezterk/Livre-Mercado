@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 class ContaBancaria {
     
-    public ContaBancaria() {
-    
+    public ContaBancaria(String numeroConta) {
+        this.numeroConta = numeroConta;
     }
 
     public double getSaldo() {

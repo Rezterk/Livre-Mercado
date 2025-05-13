@@ -68,10 +68,8 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
                     .addComponent(labelCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInformacosGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelInformacosGeraisLayout.createSequentialGroup()
-                        .addComponent(formattedCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(textNome))
+                    .addComponent(textNome, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                    .addComponent(formattedCPF))
                 .addContainerGap())
         );
         panelInformacosGeraisLayout.setVerticalGroup(
@@ -175,6 +173,11 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
     public void mostre() {
         setVisible(true);
         
+    }
+    
+    @Override
+    public Cliente getModel() {
+        return model;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
