@@ -4,7 +4,9 @@
  */
 package view.gui;
 
+import java.awt.Color;
 import java.text.NumberFormat;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -35,6 +37,10 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         initComponents();
         this.model = model;
         atualizaArvoreCategorias();
+        panelProduto.setBackground(Color.white);
+        textDescricao.setBackground(panelProduto.getBackground());
+        jScrollPane1.setBorder(null);
+        textDescricao.setBorder(null);
         panelProduto.setVisible(false);
     }
 
@@ -50,9 +56,9 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         splitPrincipalVertical = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        panelTopBar = new javax.swing.JPanel();
+        labelLivreMercado = new javax.swing.JLabel();
+        labelLivreMercadoIcon = new javax.swing.JLabel();
         textPesquisaProdutos = new javax.swing.JTextField();
         painelSplitPrincipal = new javax.swing.JSplitPane();
         painelScrollPrincipal = new javax.swing.JScrollPane();
@@ -91,40 +97,40 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
         splitPrincipalVertical.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel2.setText("LivreMercado Topbar");
+        labelLivreMercado.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        labelLivreMercado.setText("LivreMercado Topbar");
 
-        jLabel1.setText("Icon");
+        labelLivreMercadoIcon.setText("Icon");
 
         textPesquisaProdutos.addActionListener(formListener);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelTopBarLayout = new javax.swing.GroupLayout(panelTopBar);
+        panelTopBar.setLayout(panelTopBarLayout);
+        panelTopBarLayout.setHorizontalGroup(
+            panelTopBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                .addGroup(panelTopBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelTopBarLayout.createSequentialGroup()
+                        .addComponent(labelLivreMercadoIcon)
                         .addGap(18, 18, 18)
                         .addComponent(textPesquisaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelLivreMercado, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        panelTopBarLayout.setVerticalGroup(
+            panelTopBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(labelLivreMercado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(panelTopBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLivreMercadoIcon)
                     .addComponent(textPesquisaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        splitPrincipalVertical.setLeftComponent(jPanel1);
+        splitPrincipalVertical.setLeftComponent(panelTopBar);
 
         labelNomeProduto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelNomeProduto.setText("Nome Produto");
@@ -134,6 +140,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         textDescricao.setEditable(false);
         textDescricao.setColumns(20);
         textDescricao.setRows(5);
+        textDescricao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(textDescricao);
 
         labelPreco.setText("Preço: ");
@@ -178,7 +185,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
                 .addComponent(labelPreco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelVendedor)
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         painelScrollPrincipal.setViewportView(panelProduto);
@@ -451,15 +458,14 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private javax.swing.JMenuItem itemSistemaCarregar;
     private javax.swing.JMenuItem itemSistemaSair;
     private javax.swing.JMenuItem itemSistemaSalvar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel labelCategoria;
+    private javax.swing.JLabel labelLivreMercado;
+    private javax.swing.JLabel labelLivreMercadoIcon;
     private javax.swing.JLabel labelNomeProduto;
     private javax.swing.JLabel labelPreco;
     private javax.swing.JLabel labelVendedor;
@@ -471,6 +477,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private javax.swing.JScrollPane painelScrollPrincipal;
     private javax.swing.JSplitPane painelSplitPrincipal;
     private javax.swing.JPanel panelProduto;
+    private javax.swing.JPanel panelTopBar;
     private javax.swing.JSplitPane splitPrincipalVertical;
     private javax.swing.JTextArea textDescricao;
     private javax.swing.JTextField textPesquisaProdutos;
