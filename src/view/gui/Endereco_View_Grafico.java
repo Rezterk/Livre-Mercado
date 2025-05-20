@@ -37,7 +37,7 @@ public class Endereco_View_Grafico extends javax.swing.JDialog implements Endere
             @Override
             public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField jftf) {
                 try {
-                    return new MaskFormatter("#####");
+                    return new MaskFormatter("####");
                 } catch (ParseException ex) {
                     Logger.getLogger(Cliente_View_Grafico.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -155,23 +155,30 @@ public class Endereco_View_Grafico extends javax.swing.JDialog implements Endere
             .addGroup(panelInformacoesGeraisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCidade)
-                    .addComponent(labelEstado)
-                    .addComponent(labelLogradouro)
-                    .addComponent(labelComplemento)
-                    .addComponent(labelNumero)
-                    .addComponent(labelCEP))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                        .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textLogradouro)
+                    .addGroup(panelInformacoesGeraisLayout.createSequentialGroup()
+                        .addComponent(labelComplemento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textComplemento))
-                    .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(formattedNumero, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(formattedCEP, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelInformacoesGeraisLayout.createSequentialGroup()
+                            .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelCidade)
+                                .addComponent(labelEstado)
+                                .addComponent(labelLogradouro)
+                                .addComponent(labelCEP))
+                            .addGap(21, 21, 21)
+                            .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textLogradouro))
+                                .addComponent(formattedCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(panelInformacoesGeraisLayout.createSequentialGroup()
+                            .addComponent(labelNumero)
+                            .addGap(39, 39, 39)
+                            .addComponent(formattedNumero))))
+                .addContainerGap())
         );
         panelInformacoesGeraisLayout.setVerticalGroup(
             panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,13 +197,13 @@ public class Endereco_View_Grafico extends javax.swing.JDialog implements Endere
                             .addComponent(textLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelLogradouro))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelComplemento)
-                    .addComponent(textComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formattedNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNumero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelComplemento)
+                    .addComponent(textComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCEP)
@@ -212,6 +219,11 @@ public class Endereco_View_Grafico extends javax.swing.JDialog implements Endere
         });
 
         btnCancela.setText("Cancela");
+        btnCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
         panelBotoes.setLayout(panelBotoesLayout);
@@ -286,6 +298,11 @@ public class Endereco_View_Grafico extends javax.swing.JDialog implements Endere
     private void formattedCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedCEPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_formattedCEPActionPerformed
+
+    private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
+        model = null;
+        setVisible(false);
+    }//GEN-LAST:event_btnCancelaActionPerformed
 
     @Override
     public void mostre() {

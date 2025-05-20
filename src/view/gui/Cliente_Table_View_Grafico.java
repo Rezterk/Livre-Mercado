@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view.gui;
+
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.cliente.Cliente;
@@ -19,16 +20,16 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
     public Cliente_Table_View_Grafico(java.awt.Frame parent, boolean modal, List<Cliente> model) {
         super(parent, modal);
         initComponents();
-        
+
         tModel = (DefaultTableModel) tableCliente.getModel();
         tModel.addColumn("Cliente");
         tableCliente.removeColumn(tableCliente.getColumnModel().getColumn(4));
-        
+
         for (Cliente cliente : model) {
             Object[] row = {cliente.getNome(), cliente.getCPF(), cliente.getEnderecos(), cliente.getContaBancaria(), cliente};
             tModel.addRow(row);
         }
-        
+
         this.model = model;
     }
 
@@ -147,23 +148,35 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Cliente_View_Grafico clienteView = new Cliente_View_Grafico(null, true, null);
         clienteView.mostre();
-        adicionarLinha(clienteView.getModel());
+        Cliente cliente = clienteView.getModel();
+        if (cliente != null) {
+            adicionarLinha(cliente);
+            model.add(cliente); //Modifica diretamente a lista passada pelo mercado, imagino que não seja boa conduta
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Cliente_View_Grafico clienteView = new Cliente_View_Grafico(null, true, (Cliente) tableCliente.getModel().getValueAt(tableCliente.getSelectedRow(), 4));
         clienteView.mostre();
+        Cliente cliente = clienteView.getModel();
+        int linhaSelecionada = tableCliente.getSelectedRow();
+        tModel.setValueAt(cliente.getNome(), linhaSelecionada, 0);
+        tModel.setValueAt(cliente.getCPF(), linhaSelecionada, 1);
+        tModel.setValueAt(cliente.getEnderecos(), linhaSelecionada, 2);
+        tModel.setValueAt(cliente.getContaBancaria(), linhaSelecionada, 3);
+        tModel.setValueAt(cliente, linhaSelecionada, 4);
+        model.set(linhaSelecionada, cliente); //Modifica diretamente a lista passada pelo mercado, imagino que não seja boa conduta
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void adicionarLinha(Cliente cliente) {
         Object[] row = {cliente.getNome(), cliente.getCPF(), cliente.getEnderecos(), cliente.getContaBancaria(), cliente};
         tModel.addRow(row);
     }
-    
+
     public void mostre() {
         setVisible(true);
     }
-    
+
     private DefaultTableModel tModel;
     private List<Cliente> model;
     // Variables declaration - do not modify//GEN-BEGIN:variables

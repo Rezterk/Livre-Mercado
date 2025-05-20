@@ -61,27 +61,38 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelCidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelComplemento" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelNumero" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelCEP" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelComplemento" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="textComplemento" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelCidade" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelCEP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jScrollPane1" alignment="0" pref="234" max="32767" attributes="0"/>
+                                      <Component id="comboEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textLogradouro" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="formattedCEP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelNumero" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="formattedNumero" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="234" max="32767" attributes="0"/>
-                          <Component id="comboEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="textLogradouro" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textComplemento" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="formattedNumero" alignment="0" max="32767" attributes="0"/>
-                          <Component id="formattedCEP" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,14 +117,14 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelComplemento" min="-2" max="-2" attributes="0"/>
-                      <Component id="textComplemento" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="formattedNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelComplemento" min="-2" max="-2" attributes="0"/>
+                      <Component id="textComplemento" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -256,6 +267,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancela"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
