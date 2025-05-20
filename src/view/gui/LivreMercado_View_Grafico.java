@@ -394,7 +394,9 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private void itemMercadoProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoProdutosActionPerformed
         // TODO add your handling code here:
         // atualizaArvoreCategorias();
-        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+        //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+        Cliente_Table_View_Grafico clienteView = new Cliente_Table_View_Grafico(this, true, model.getClientes());
+        clienteView.mostre();
     }//GEN-LAST:event_itemMercadoProdutosActionPerformed
 
     private void textPesquisaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPesquisaProdutosActionPerformed

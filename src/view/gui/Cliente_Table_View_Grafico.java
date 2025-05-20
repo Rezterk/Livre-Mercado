@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view.gui;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.cliente.Cliente;
 
 /**
  *
@@ -13,9 +16,20 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
     /**
      * Creates new form Cliente_Table_View_Grafico
      */
-    public Cliente_Table_View_Grafico(java.awt.Frame parent, boolean modal) {
+    public Cliente_Table_View_Grafico(java.awt.Frame parent, boolean modal, List<Cliente> model) {
         super(parent, modal);
         initComponents();
+        
+        DefaultTableModel tModel = (DefaultTableModel) tableCliente.getModel();
+        tModel.addColumn("Cliente");
+        tableCliente.removeColumn(tableCliente.getColumnModel().getColumn(4));
+        
+        for (Cliente cliente : model) {
+            Object[] row = {cliente.getNome(), cliente.getCPF(), cliente.getEnderecos(), cliente.getContaBancaria(), cliente};
+            tModel.addRow(row);
+        }
+        
+        this.model = model;
     }
 
     /**
@@ -29,22 +43,19 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
 
         panelClienteTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCliente = new javax.swing.JTable();
         panelBotoes = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nome", "CPF", "Endereço", "Conta Bancaria"
+                "Nome", "CPF", "Endereço", "Conta Bancária"
             }
         ) {
             Class[] types = new Class [] {
@@ -55,7 +66,7 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableCliente);
 
         javax.swing.GroupLayout panelClienteTableLayout = new javax.swing.GroupLayout(panelClienteTable);
         panelClienteTable.setLayout(panelClienteTableLayout);
@@ -129,57 +140,20 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        Cliente_View_Grafico clienteView = new Cliente_View_Grafico(null, true, (Cliente) tableCliente.getModel().getValueAt(tableCliente.getSelectedRow(), 4));
     }//GEN-LAST:event_btnAddActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cliente_Table_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cliente_Table_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cliente_Table_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cliente_Table_View_Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Cliente_Table_View_Grafico dialog = new Cliente_Table_View_Grafico(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    public void mostre() {
+        setVisible(true);
     }
-
+    
+    private List<Cliente> model;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnEditar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelBotoes;
     private javax.swing.JPanel panelClienteTable;
+    private javax.swing.JTable tableCliente;
     // End of variables declaration//GEN-END:variables
 }
