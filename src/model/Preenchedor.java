@@ -35,7 +35,7 @@ public class Preenchedor {
         for (int i = 1; i <= 10; i++) {
             double saldoInicial = 100 + random.nextDouble() * (5000 - 100);
             ContaBancaria conta = new ContaBancaria("Conta_" + i, saldoInicial);
-            Cliente cliente = new Cliente(".", "Cliente_" + i, conta);
+            Cliente cliente = new Cliente("123.456.789-12", "Cliente_" + i, conta);
             listaClientes.add(cliente);
             // Define os 10 primeiros clientes como vendedores, ou seja, com estoque
             if (i <= 5) {

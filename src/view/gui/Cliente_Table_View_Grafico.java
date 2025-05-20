@@ -20,7 +20,7 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        DefaultTableModel tModel = (DefaultTableModel) tableCliente.getModel();
+        tModel = (DefaultTableModel) tableCliente.getModel();
         tModel.addColumn("Cliente");
         tableCliente.removeColumn(tableCliente.getColumnModel().getColumn(4));
         
@@ -93,6 +93,11 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
         panelBotoes.setLayout(panelBotoesLayout);
@@ -140,13 +145,26 @@ public class Cliente_Table_View_Grafico extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Cliente_View_Grafico clienteView = new Cliente_View_Grafico(null, true, (Cliente) tableCliente.getModel().getValueAt(tableCliente.getSelectedRow(), 4));
+        Cliente_View_Grafico clienteView = new Cliente_View_Grafico(null, true, null);
+        clienteView.mostre();
+        adicionarLinha(clienteView.getModel());
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        Cliente_View_Grafico clienteView = new Cliente_View_Grafico(null, true, (Cliente) tableCliente.getModel().getValueAt(tableCliente.getSelectedRow(), 4));
+        clienteView.mostre();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void adicionarLinha(Cliente cliente) {
+        Object[] row = {cliente.getNome(), cliente.getCPF(), cliente.getEnderecos(), cliente.getContaBancaria(), cliente};
+        tModel.addRow(row);
+    }
+    
     public void mostre() {
         setVisible(true);
     }
     
+    private DefaultTableModel tModel;
     private List<Cliente> model;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

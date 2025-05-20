@@ -42,6 +42,15 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
                 return null;
             }
         });
+        
+        if (model != null) {
+            textNome.setText(model.getNome());
+            this.formattedCPF.setText(model.getCPF());
+            if (!model.getEnderecos().isEmpty()) {
+                atualizaEndereco(model.getEnderecos().get(0));
+            }
+        }
+        
         this.model = model;
     }
 
@@ -247,16 +256,20 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         Endereco_View_Grafico dialogo = new Endereco_View_Grafico(null, true, null);
         dialogo.setVisible(true);
         enderecoCliente = dialogo.getModel();
-        if (enderecoCliente != null) {
-            textEndereco.append("Estado: " + enderecoCliente.getEstado());
-            textEndereco.append("\nCidade: " + enderecoCliente.getCidade());
-            textEndereco.append("\nLogradouro: " + enderecoCliente.getLogradouro());
-            textEndereco.append("\nNumero: " + enderecoCliente.getNumero());
-            textEndereco.append("\nComplemento: " + enderecoCliente.getComplemento());
-            textEndereco.append("\nCEP: " + enderecoCliente.getCep());
-        }
+        atualizaEndereco(enderecoCliente);
     }//GEN-LAST:event_buttonSetEnderecoActionPerformed
 
+    private void atualizaEndereco(Endereco endereco) {
+        if (endereco != null) {
+            textEndereco.append("Estado: " + endereco.getEstado());
+            textEndereco.append("\nCidade: " + endereco.getCidade());
+            textEndereco.append("\nLogradouro: " + endereco.getLogradouro());
+            textEndereco.append("\nNumero: " + endereco.getNumero());
+            textEndereco.append("\nComplemento: " + endereco.getComplemento());
+            textEndereco.append("\nCEP: " + endereco.getCep());
+        }
+    }
+    
     @Override
     public void mostre() {
         setVisible(true);
