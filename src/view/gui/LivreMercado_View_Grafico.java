@@ -384,6 +384,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             JOptionPane.showMessageDialog(this, "Novo cliente foi criado", "Cliente", JOptionPane.PLAIN_MESSAGE);
             model.adicionarCliente(novoCliente);
         }
+        // TODO: modificar para tela de Cliente Table
     }//GEN-LAST:event_itemMercadoClientesActionPerformed
 
     private void itemMercadoCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoCategoriasActionPerformed
@@ -395,6 +396,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         // TODO add your handling code here:
         // atualizaArvoreCategorias();
         //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
+        // TODO: modificar para tela de Cliente Table
         Cliente_Table_View_Grafico clienteView = new Cliente_Table_View_Grafico(this, true, model.getClientes());
         clienteView.mostre();
     }//GEN-LAST:event_itemMercadoProdutosActionPerformed
