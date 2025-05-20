@@ -14,6 +14,7 @@ import model.autenticador.Autenticacao;
 import model.autenticador.Credencial_if;
 import model.categoria_produto.Categoria;
 import model.categoria_produto.Produto;
+import model.cliente.Cliente;
 import model.fabrica.Fabrica_Grafica;
 import view.Cliente_View;
 import view.Credencial_View;
@@ -148,7 +149,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             .addGroup(panelProdutoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelProdutoLayout.createSequentialGroup()
                         .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelNomeProduto)
@@ -159,7 +160,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
                                     .addComponent(labelCategoria)
                                     .addComponent(labelVendedor)))
                             .addComponent(jLabel3))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 631, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelProdutoLayout.setVerticalGroup(
@@ -371,8 +372,10 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);       
         Cliente_View clienteView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Cliente_View(this, true, null);
         clienteView.mostre();
-        if (clienteView.getModel() != null) {
+        Cliente novoCliente = clienteView.getModel();
+        if (novoCliente != null) {
             JOptionPane.showMessageDialog(this, "Novo cliente foi criado", "Cliente", JOptionPane.PLAIN_MESSAGE);
+            model.adicionarCliente(novoCliente);
         }
     }//GEN-LAST:event_itemMercadoClientesActionPerformed
 

@@ -231,11 +231,13 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         // TODO add your handling code here:
         String nome = textNome.getText();
         String cpf = formattedCPF.getText();
-        Endereco endereco = null; // @TODO  continua inicializando
         if (nome.equals("")||cpf.equals("")) {
             JOptionPane.showMessageDialog(this, "Nome e CPF precisam ser definidos", "Cliente", JOptionPane.WARNING_MESSAGE);
         } else {
-            model = new Cliente(nome, cpf, endereco, null);
+            model = new Cliente(cpf, nome, null);
+            if (enderecoCliente != null) {
+                model.addEndereco(enderecoCliente);
+            }
             setVisible(false);
         }
     }//GEN-LAST:event_buttonOkActionPerformed
@@ -244,16 +246,15 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         // TODO add your handling code here:
         Endereco_View_Grafico dialogo = new Endereco_View_Grafico(null, true, null);
         dialogo.setVisible(true);
-        if (dialogo.getModel() != null) {
-            textEndereco.append("Estado: " + dialogo.getModel().getEstado());
-            textEndereco.append("\nCidade: " + dialogo.getModel().getCidade());
-            textEndereco.append("\nLogradouro: " + dialogo.getModel().getLogradouro());
-            textEndereco.append("\nNumero: " + dialogo.getModel().getNumero());
-            textEndereco.append("\nComplemento: " + dialogo.getModel().getComplemento());
-            textEndereco.append("\nCEP: " + dialogo.getModel().getCep());
+        enderecoCliente = dialogo.getModel();
+        if (enderecoCliente != null) {
+            textEndereco.append("Estado: " + enderecoCliente.getEstado());
+            textEndereco.append("\nCidade: " + enderecoCliente.getCidade());
+            textEndereco.append("\nLogradouro: " + enderecoCliente.getLogradouro());
+            textEndereco.append("\nNumero: " + enderecoCliente.getNumero());
+            textEndereco.append("\nComplemento: " + enderecoCliente.getComplemento());
+            textEndereco.append("\nCEP: " + enderecoCliente.getCep());
         }
-        // 
-        // this.model.setEndereco(endereco);
     }//GEN-LAST:event_buttonSetEnderecoActionPerformed
 
     @Override
@@ -267,6 +268,7 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         return model;
     }
 
+    private Endereco enderecoCliente;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancela;
     private javax.swing.JButton buttonOk;

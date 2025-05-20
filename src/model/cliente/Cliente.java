@@ -15,11 +15,10 @@ import model.contaBancaria.ContaBancaria;
  */
 public class Cliente {
     
-    public Cliente(String CPF, String nome, Endereco endereco, ContaBancaria contaBancaria) {
+    public Cliente(String CPF, String nome, ContaBancaria contaBancaria) {
         this.CPF = CPF;
         this.nome = nome;
         this.contaBancaria = contaBancaria;
-        enderecos.add(endereco);
     }
 
     public String getCPF() {
