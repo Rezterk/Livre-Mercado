@@ -1,6 +1,8 @@
 
 import model.Fabrica;
 import model.LivreMercado;
+import model.Preenchedor;
+import model.contaBancaria.ContaBancaria;
 import model.fabrica.Fabrica_Grafica;
 import model.fabrica.Fabrica_Textual;
 import view.LivreMercado_View;
@@ -29,7 +31,8 @@ public class Main {
                 }
             }
         }
-        LivreMercado mercado = new LivreMercado();
+        LivreMercado mercado = new LivreMercado(new ContaBancaria("00001",0.0));
+        Preenchedor.inicializaMercado(mercado);
         LivreMercado_View frontEnd = Fabrica.GetViewFabricaConcreta().new_LivreMercado_View(mercado);
         frontEnd.mostre();
     }   

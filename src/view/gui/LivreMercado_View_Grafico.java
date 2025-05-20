@@ -4,11 +4,16 @@
  */
 package view.gui;
 
+import java.text.NumberFormat;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import model.Fabrica;
 import model.LivreMercado;
 import model.autenticador.Autenticacao;
 import model.autenticador.Credencial_if;
+import model.categoria_produto.Categoria;
+import model.categoria_produto.Produto;
 import model.fabrica.Fabrica_Grafica;
 import view.Cliente_View;
 import view.Credencial_View;
@@ -28,6 +33,8 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     public LivreMercado_View_Grafico(LivreMercado model) {
         initComponents();
         this.model = model;
+        atualizaArvoreCategorias();
+        panelProduto.setVisible(false);
     }
 
     /**
@@ -48,6 +55,14 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         textPesquisaProdutos = new javax.swing.JTextField();
         painelSplitPrincipal = new javax.swing.JSplitPane();
         painelScrollPrincipal = new javax.swing.JScrollPane();
+        panelProduto = new javax.swing.JPanel();
+        labelNomeProduto = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textDescricao = new javax.swing.JTextArea();
+        labelPreco = new javax.swing.JLabel();
+        labelCategoria = new javax.swing.JLabel();
+        labelVendedor = new javax.swing.JLabel();
         painelScrollEsquerdo = new javax.swing.JScrollPane();
         arvoreCategorias = new javax.swing.JTree();
         menuPrincipal = new javax.swing.JMenuBar();
@@ -110,41 +125,72 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
         splitPrincipalVertical.setLeftComponent(jPanel1);
 
+        labelNomeProduto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelNomeProduto.setText("Nome Produto");
+
+        jLabel3.setText("Descrição:");
+
+        textDescricao.setEditable(false);
+        textDescricao.setColumns(20);
+        textDescricao.setRows(5);
+        jScrollPane1.setViewportView(textDescricao);
+
+        labelPreco.setText("Preço: ");
+
+        labelCategoria.setText("Categoria:");
+
+        labelVendedor.setText("Vendedor:");
+
+        javax.swing.GroupLayout panelProdutoLayout = new javax.swing.GroupLayout(panelProduto);
+        panelProduto.setLayout(panelProdutoLayout);
+        panelProdutoLayout.setHorizontalGroup(
+            panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProdutoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+                    .addGroup(panelProdutoLayout.createSequentialGroup()
+                        .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelNomeProduto)
+                            .addGroup(panelProdutoLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelPreco)
+                                    .addComponent(labelCategoria)
+                                    .addComponent(labelVendedor)))
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelProdutoLayout.setVerticalGroup(
+            panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProdutoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelNomeProduto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(labelCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelPreco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelVendedor)
+                .addContainerGap(350, Short.MAX_VALUE))
+        );
+
+        painelScrollPrincipal.setViewportView(panelProduto);
+
         painelSplitPrincipal.setRightComponent(painelScrollPrincipal);
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Categorias");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("colors");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("blue");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("violet");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("red");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("yellow");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("sports");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("basketball");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("soccer");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("football");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hockey");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("food");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hot dogs");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("pizza");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ravioli");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("bananas");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        arvoreCategorias.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        painelScrollEsquerdo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        painelScrollEsquerdo.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        arvoreCategorias.setModel(null);
         arvoreCategorias.setPreferredSize(new java.awt.Dimension(150, 78));
+        arvoreCategorias.addMouseListener(formListener);
+        arvoreCategorias.addTreeSelectionListener(formListener);
         painelScrollEsquerdo.setViewportView(arvoreCategorias);
 
         painelSplitPrincipal.setLeftComponent(painelScrollEsquerdo);
@@ -199,14 +245,14 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitPrincipalVertical, javax.swing.GroupLayout.PREFERRED_SIZE, 784, Short.MAX_VALUE)
+                .addComponent(splitPrincipalVertical)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitPrincipalVertical, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(splitPrincipalVertical)
                 .addContainerGap())
         );
 
@@ -218,7 +264,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
     // Code for dispatching events from components to event handlers.
 
-    private class FormListener implements java.awt.event.ActionListener, java.awt.event.WindowListener {
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.MouseListener, java.awt.event.WindowListener, javax.swing.event.TreeSelectionListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == textPesquisaProdutos) {
@@ -229,6 +275,9 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             }
             else if (evt.getSource() == itemSistemaSalvar) {
                 LivreMercado_View_Grafico.this.itemSistemaSalvarActionPerformed(evt);
+            }
+            else if (evt.getSource() == itemSistemaAutenticar) {
+                LivreMercado_View_Grafico.this.itemSistemaAutenticarActionPerformed(evt);
             }
             else if (evt.getSource() == itemSistemaSair) {
                 LivreMercado_View_Grafico.this.itemSistemaSairActionPerformed(evt);
@@ -242,9 +291,24 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             else if (evt.getSource() == itemMercadoProdutos) {
                 LivreMercado_View_Grafico.this.itemMercadoProdutosActionPerformed(evt);
             }
-            else if (evt.getSource() == itemSistemaAutenticar) {
-                LivreMercado_View_Grafico.this.itemSistemaAutenticarActionPerformed(evt);
+        }
+
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            if (evt.getSource() == arvoreCategorias) {
+                LivreMercado_View_Grafico.this.arvoreCategoriasMouseClicked(evt);
             }
+        }
+
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+        }
+
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+        }
+
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
         }
 
         public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -268,6 +332,12 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         public void windowOpened(java.awt.event.WindowEvent evt) {
             if (evt.getSource() == LivreMercado_View_Grafico.this) {
                 LivreMercado_View_Grafico.this.formWindowOpened(evt);
+            }
+        }
+
+        public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+            if (evt.getSource() == arvoreCategorias) {
+                LivreMercado_View_Grafico.this.arvoreCategoriasValueChanged(evt);
             }
         }
     }// </editor-fold>//GEN-END:initComponents
@@ -313,6 +383,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
     private void itemMercadoProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoProdutosActionPerformed
         // TODO add your handling code here:
+        // atualizaArvoreCategorias();
         JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_itemMercadoProdutosActionPerformed
 
@@ -340,6 +411,27 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         atualizeMenu();
     }//GEN-LAST:event_itemSistemaAutenticarActionPerformed
 
+    private void arvoreCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arvoreCategoriasMouseClicked
+
+    }//GEN-LAST:event_arvoreCategoriasMouseClicked
+
+    private void arvoreCategoriasValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_arvoreCategoriasValueChanged
+        DefaultMutableTreeNode noSelecionado = (DefaultMutableTreeNode) arvoreCategorias.getLastSelectedPathComponent();
+        
+        if (noSelecionado != null) {
+            if (noSelecionado.isLeaf()) {
+                Produto produto = (Produto) noSelecionado.getUserObject();
+                labelNomeProduto.setText(produto.getNome());
+                textDescricao.setText(produto.getDescricao());
+                labelCategoria.setText("Categoria: " + produto.getCategoria().getNome());
+                NumberFormat formato = NumberFormat.getCurrencyInstance();
+                labelPreco.setText("Preco: " + formato.format(produto.getPrecoBase()));
+                labelVendedor.setText("Vendedor: " + produto.getVendedor().getNome());
+                panelProduto.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_arvoreCategoriasValueChanged
+
     @Override
     public void mostre() {
         setVisible(true);
@@ -358,10 +450,16 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private javax.swing.JMenuItem itemSistemaSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel labelCategoria;
+    private javax.swing.JLabel labelNomeProduto;
+    private javax.swing.JLabel labelPreco;
+    private javax.swing.JLabel labelVendedor;
     private javax.swing.JMenu menuMercado;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuSistema;
@@ -369,7 +467,9 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private javax.swing.JScrollPane painelScrollEsquerdo;
     private javax.swing.JScrollPane painelScrollPrincipal;
     private javax.swing.JSplitPane painelSplitPrincipal;
+    private javax.swing.JPanel panelProduto;
     private javax.swing.JSplitPane splitPrincipalVertical;
+    private javax.swing.JTextArea textDescricao;
     private javax.swing.JTextField textPesquisaProdutos;
     // End of variables declaration//GEN-END:variables
 
@@ -382,5 +482,27 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private void atualizeMenu() {
         menuMercado.setEnabled(autenticacao != null);
         itemSistemaAutenticar.setEnabled(autenticacao == null);
+    }
+
+    private DefaultMutableTreeNode atualizaModeloSubcategoria(Categoria categoria) {
+        DefaultMutableTreeNode modeloNodo = new DefaultMutableTreeNode(categoria);
+        DefaultMutableTreeNode modeloSubNodo;
+        for (Categoria subCategoria: categoria.getSubcategorias()) {
+            modeloSubNodo = atualizaModeloSubcategoria(subCategoria);
+            modeloSubNodo.setAllowsChildren(true);
+            modeloNodo.add(modeloSubNodo);
+        }
+        for (Produto produto: categoria.getProdutos()) {
+            modeloSubNodo = new DefaultMutableTreeNode(produto);
+            modeloSubNodo.setAllowsChildren(false);
+            modeloNodo.add(modeloSubNodo);
+        }
+        return modeloNodo;
+    }
+
+    private void atualizaArvoreCategorias() {
+        DefaultMutableTreeNode modeloNodoRaiz = atualizaModeloSubcategoria(model.getCategoriaRaiz());
+        DefaultTreeModel modeloArvore = new DefaultTreeModel(modeloNodoRaiz);
+        arvoreCategorias.setModel(modeloArvore);
     }
 }

@@ -9,11 +9,13 @@ import model.LivreMercado;
 import model.autenticador.Autenticador_if;
 import model.autenticador.Credencial_if;
 import model.cliente.Cliente;
+import model.cliente.Endereco;
 import view.Autenticador_View;
 import view.Cliente_View;
 import view.LivreMercado_View;
 import view.terminal.Autenticador_View_Textual;
 import view.Credencial_View;
+import view.Endereco_View;
 import view.terminal.CredencialLoginSenha_View_Textual;
 import view.terminal.LivreMercado_View_Textual;
 
@@ -39,6 +41,11 @@ public class Fabrica_Textual extends Fabrica {
 
     @Override
     public Cliente_View new_Cliente_View(Cliente model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Endereco_View new_Endereco_View(Endereco model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

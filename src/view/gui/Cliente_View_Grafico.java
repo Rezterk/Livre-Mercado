@@ -4,9 +4,17 @@
  */
 package view.gui;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
+import model.autenticador.CredencialLoginSenha;
 import model.cliente.Cliente;
+import model.cliente.Endereco;
 import view.Cliente_View;
 
 /**
@@ -23,7 +31,17 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
     public Cliente_View_Grafico(java.awt.Frame parent, boolean modal, Cliente model) {
         super(parent, modal);
         initComponents();
-        AbstractFormatter formatter = formattedCPF.getFormatter();
+        formattedCPF.setFormatterFactory(new AbstractFormatterFactory() {
+            @Override
+            public AbstractFormatter getFormatter(JFormattedTextField jftf) {
+                try {
+                    return new MaskFormatter("###.###.###-##");
+                } catch (ParseException ex) {
+                    Logger.getLogger(Cliente_View_Grafico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
+            }
+        });
         this.model = model;
     }
 
@@ -41,7 +59,12 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         textNome = new javax.swing.JTextField();
         labelCPF = new javax.swing.JLabel();
         formattedCPF = new javax.swing.JFormattedTextField();
-        jPanel1 = new javax.swing.JPanel();
+        panelEndereco = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textEndereco = new javax.swing.JTextArea();
+        buttonSetEndereco = new javax.swing.JButton();
+        panelBotoes = new javax.swing.JPanel();
         buttonCancela = new javax.swing.JButton();
         buttonOk = new javax.swing.JButton();
 
@@ -57,6 +80,42 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
 
         labelCPF.setText("CPF:");
 
+        formattedCPF.setColumns(11);
+
+        jLabel1.setText("Endereço:");
+
+        textEndereco.setEditable(false);
+        textEndereco.setColumns(20);
+        textEndereco.setRows(6);
+        jScrollPane1.setViewportView(textEndereco);
+
+        buttonSetEndereco.setText("...");
+        buttonSetEndereco.addActionListener(formListener);
+
+        javax.swing.GroupLayout panelEnderecoLayout = new javax.swing.GroupLayout(panelEndereco);
+        panelEndereco.setLayout(panelEnderecoLayout);
+        panelEnderecoLayout.setHorizontalGroup(
+            panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEnderecoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSetEndereco)
+                .addContainerGap())
+        );
+        panelEnderecoLayout.setVerticalGroup(
+            panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEnderecoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonSetEndereco)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelInformacosGeraisLayout = new javax.swing.GroupLayout(panelInformacosGerais);
         panelInformacosGerais.setLayout(panelInformacosGeraisLayout);
         panelInformacosGeraisLayout.setHorizontalGroup(
@@ -64,12 +123,17 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
             .addGroup(panelInformacosGeraisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInformacosGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNome)
-                    .addComponent(labelCPF))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelInformacosGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textNome, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                    .addComponent(formattedCPF))
+                    .addGroup(panelInformacosGeraisLayout.createSequentialGroup()
+                        .addGroup(panelInformacosGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelNome)
+                            .addComponent(labelCPF))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelInformacosGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelInformacosGeraisLayout.createSequentialGroup()
+                                .addComponent(formattedCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(textNome)))
+                    .addComponent(panelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInformacosGeraisLayout.setVerticalGroup(
@@ -83,7 +147,9 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
                 .addGroup(panelInformacosGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelCPF)
                     .addComponent(formattedCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("view/gui/Bundle"); // NOI18N
@@ -93,22 +159,22 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
         buttonOk.setText(bundle.getString("CredencialLoginSenha_View_Grafico.buttonOk.text")); // NOI18N
         buttonOk.addActionListener(formListener);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
+        panelBotoes.setLayout(panelBotoesLayout);
+        panelBotoesLayout.setHorizontalGroup(
+            panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotoesLayout.createSequentialGroup()
+                .addContainerGap(393, Short.MAX_VALUE)
                 .addComponent(buttonOk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCancela)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelBotoesLayout.setVerticalGroup(
+            panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancela)
                     .addComponent(buttonOk))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -122,16 +188,16 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelInformacosGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelInformacosGerais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelInformacosGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -144,30 +210,51 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
     private class FormListener implements java.awt.event.ActionListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            if (evt.getSource() == buttonCancela) {
-                Cliente_View_Grafico.this.buttonCancelaActionPerformed(evt);
+            if (evt.getSource() == buttonSetEndereco) {
+                Cliente_View_Grafico.this.buttonSetEnderecoActionPerformed(evt);
+            }
+            else if (evt.getSource() == buttonCancela) {
+                Cliente_View_Grafico.this.buttonOkActionPerformed(evt);
             }
             else if (evt.getSource() == buttonOk) {
-                Cliente_View_Grafico.this.buttonOkActionPerformed(evt);
+                Cliente_View_Grafico.this.buttonCancelaActionPerformed(evt);
             }
         }
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaActionPerformed
-        String nome = textNome.getText();
-        String cpf = formattedCPF.getText();
-        if (nome.equals("")||cpf.equals("")) {
-            JOptionPane.showMessageDialog(this, "As informações do cliente precisam ser definidos", "Cliente", JOptionPane.WARNING_MESSAGE);
-        } else {
-            model = new Cliente(nome, cpf);
-            setVisible(false);
-        }
+        model = null;
+        setVisible(false);
     }//GEN-LAST:event_buttonCancelaActionPerformed
 
     private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
-        model = null;
-        setVisible(false);
+        // TODO add your handling code here:
+        String nome = textNome.getText();
+        String cpf = formattedCPF.getText();
+        Endereco endereco = null; // @TODO  continua inicializando
+        if (nome.equals("")||cpf.equals("")) {
+            JOptionPane.showMessageDialog(this, "Nome e CPF precisam ser definidos", "Cliente", JOptionPane.WARNING_MESSAGE);
+        } else {
+            model = new Cliente(nome, cpf, endereco, null);
+            setVisible(false);
+        }
     }//GEN-LAST:event_buttonOkActionPerformed
+
+    private void buttonSetEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSetEnderecoActionPerformed
+        // TODO add your handling code here:
+        Endereco_View_Grafico dialogo = new Endereco_View_Grafico(null, true, null);
+        dialogo.setVisible(true);
+        if (dialogo.getModel() != null) {
+            textEndereco.append("Estado: " + dialogo.getModel().getEstado());
+            textEndereco.append("\nCidade: " + dialogo.getModel().getCidade());
+            textEndereco.append("\nLogradouro: " + dialogo.getModel().getLogradouro());
+            textEndereco.append("\nNumero: " + dialogo.getModel().getNumero());
+            textEndereco.append("\nComplemento: " + dialogo.getModel().getComplemento());
+            textEndereco.append("\nCEP: " + dialogo.getModel().getCep());
+        }
+        // 
+        // this.model.setEndereco(endereco);
+    }//GEN-LAST:event_buttonSetEnderecoActionPerformed
 
     @Override
     public void mostre() {
@@ -183,11 +270,16 @@ public class Cliente_View_Grafico extends javax.swing.JDialog implements Cliente
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancela;
     private javax.swing.JButton buttonOk;
+    private javax.swing.JButton buttonSetEndereco;
     private javax.swing.JFormattedTextField formattedCPF;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCPF;
     private javax.swing.JLabel labelNome;
+    private javax.swing.JPanel panelBotoes;
+    private javax.swing.JPanel panelEndereco;
     private javax.swing.JPanel panelInformacosGerais;
+    private javax.swing.JTextArea textEndereco;
     private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables
 }

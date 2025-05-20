@@ -10,10 +10,37 @@ package model.cliente;
  */
 public class Endereco {
     
-    public Endereco(String logradouro, String numero, String cep) {
+    public Endereco(String estado, String cidade, String logradouro, int numero, String complemento, String cep) {
+        this.estado = estado;
+        this.cidade = cidade;
         this.logradouro = logradouro;
         this.numero = numero;
+        this.complemento = complemento;
         this.cep = cep;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getLogradouro() {
@@ -24,11 +51,11 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -46,11 +73,14 @@ public class Endereco {
         if (obj == null || this.getClass() != obj.getClass()) return false;
         Endereco endereco = (Endereco) obj;
         return (endereco.logradouro.equals(this.logradouro)
-                && endereco.numero.equals(this.numero)
-                && endereco.cep.equals(this.cep));
+                && numero == endereco.numero
+                && cep == endereco.cep);
     }
     
+    private String estado;
+    private String cidade;
     private String logradouro;
-    private String numero;
+    private int numero;
+    private String complemento;
     private String cep;
 }

@@ -10,12 +10,15 @@ import model.LivreMercado;
 import model.autenticador.Autenticador_if;
 import model.autenticador.Credencial_if;
 import model.cliente.Cliente;
+import model.cliente.Endereco;
 import view.Autenticador_View;
 import view.Cliente_View;
 import view.Credencial_View;
+import view.Endereco_View;
 import view.LivreMercado_View;
 import view.gui.Autenticador_View_Grafico;
 import view.gui.CredencialLoginSenha_View_Grafico;
+import view.gui.Endereco_View_Grafico;
 import view.gui.LivreMercado_View_Grafico;
 
 /**
@@ -49,6 +52,15 @@ public class Fabrica_Grafica extends Fabrica {
     @Override
     public Cliente_View new_Cliente_View(Cliente model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Endereco_View new_Endereco_View(Endereco model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Endereco_View new_Endereco_View(java.awt.Frame parent, boolean modal, Endereco model) {
+        return new Endereco_View_Grafico(parent, modal, model);
     }
 
 }

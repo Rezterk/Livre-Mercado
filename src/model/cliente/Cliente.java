@@ -1,11 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/licenstxt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model.cliente;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import model.categoria_produto.ColecaoProdutos;
+import model.contaBancaria.ContaBancaria;
 
 /**
  *
@@ -13,9 +15,11 @@ import java.util.List;
  */
 public class Cliente {
     
-    public Cliente(String CPF, String nome) {
+    public Cliente(String CPF, String nome, Endereco endereco, ContaBancaria contaBancaria) {
         this.CPF = CPF;
         this.nome = nome;
+        this.contaBancaria = contaBancaria;
+        enderecos.add(endereco);
     }
 
     public String getCPF() {
@@ -26,28 +30,28 @@ public class Cliente {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public ArrayList<Endereco> getEnderecos() {
         return enderecos;
     }
 
-    public ColecaoItens getEstoque() {
+    public ColecaoProdutos getEstoque() {
         return estoque;
     }
 
-    public ColecaoItens getCarrinho() {
+    public ColecaoProdutos getCarrinho() {
         return carrinho;
+    }
+
+    public ContaBancaria getContaBancaria() {
+        return contaBancaria;
     }
 
     public List<ContaBancaria> getContasBancarias() {
         return Collections.unmodifiableList(contasBancarias);
     }
     
-    public void addContaBancaria(String numeroConta) {
-        contasBancarias.add(new ContaBancaria(numeroConta));
+    public void addContaBancaria(ContaBancaria novaConta) {
+        contasBancarias.add(novaConta);
     }
     
     public void addEndereco(Endereco novoEndereco) {
@@ -75,13 +79,14 @@ public class Cliente {
     private final String CPF;
     private String nome;
     private ArrayList<Endereco> enderecos;
-    private ColecaoItens estoque;
-    private ColecaoItens carrinho;
+    private ColecaoProdutos estoque;
+    private ColecaoProdutos carrinho;
+    private ContaBancaria contaBancaria;
     private ArrayList<ContaBancaria> contasBancarias;
     {
         enderecos = new ArrayList<>();
         contasBancarias = new ArrayList<>();
-        estoque = new ColecaoItens();
-        carrinho = new ColecaoItens();
+        estoque = new ColecaoProdutos();
+        carrinho = new ColecaoProdutos();
     }
 }

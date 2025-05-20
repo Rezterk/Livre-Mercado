@@ -9,7 +9,7 @@ package model.autenticador;
  * @author rafaelcancian
  */
 public class CredencialLoginSenha implements Credencial_if {
-    public CredencialLoginSenha(String usuario, String senha) {
+    public CredencialLoginSenha(java.lang.String usuario, java.lang.String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }
