@@ -16,7 +16,6 @@ import model.autenticador.Autenticacao;
 import model.autenticador.Credencial_if;
 import model.categoria_produto.Categoria;
 import model.categoria_produto.Produto;
-import model.cliente.Cliente;
 import model.fabrica.Fabrica_Grafica;
 import view.Cliente_Table_View;
 import view.Credencial_View;
@@ -197,7 +196,6 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
         arvoreCategorias.setModel(null);
         arvoreCategorias.setPreferredSize(new java.awt.Dimension(150, 78));
-        arvoreCategorias.addMouseListener(formListener);
         arvoreCategorias.addTreeSelectionListener(formListener);
         painelScrollEsquerdo.setViewportView(arvoreCategorias);
 
@@ -272,7 +270,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
     // Code for dispatching events from components to event handlers.
 
-    private class FormListener implements java.awt.event.ActionListener, java.awt.event.MouseListener, java.awt.event.WindowListener, javax.swing.event.TreeSelectionListener {
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.WindowListener, javax.swing.event.TreeSelectionListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == textPesquisaProdutos) {
@@ -299,24 +297,6 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
             else if (evt.getSource() == itemMercadoProdutos) {
                 LivreMercado_View_Grafico.this.itemMercadoProdutosActionPerformed(evt);
             }
-        }
-
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            if (evt.getSource() == arvoreCategorias) {
-                LivreMercado_View_Grafico.this.arvoreCategoriasMouseClicked(evt);
-            }
-        }
-
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-        }
-
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-        }
-
-        public void mousePressed(java.awt.event.MouseEvent evt) {
-        }
-
-        public void mouseReleased(java.awt.event.MouseEvent evt) {
         }
 
         public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -421,10 +401,6 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         atualizeMenu();
     }//GEN-LAST:event_itemSistemaAutenticarActionPerformed
 
-    private void arvoreCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arvoreCategoriasMouseClicked
-
-    }//GEN-LAST:event_arvoreCategoriasMouseClicked
-
     private void arvoreCategoriasValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_arvoreCategoriasValueChanged
         DefaultMutableTreeNode noSelecionado = (DefaultMutableTreeNode) arvoreCategorias.getLastSelectedPathComponent();
         
@@ -442,6 +418,34 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
         }
     }//GEN-LAST:event_arvoreCategoriasValueChanged
 
+
+    private void atualizeMenu() {
+        menuMercado.setEnabled(autenticacao != null);
+        itemSistemaAutenticar.setEnabled(autenticacao == null);
+    }
+
+    private DefaultMutableTreeNode atualizaModeloSubcategoria(Categoria categoria) {
+        DefaultMutableTreeNode modeloNodo = new DefaultMutableTreeNode(categoria);
+        DefaultMutableTreeNode modeloSubNodo;
+        for (Categoria subCategoria: categoria.getSubcategorias()) {
+            modeloSubNodo = atualizaModeloSubcategoria(subCategoria);
+            modeloSubNodo.setAllowsChildren(true);
+            modeloNodo.add(modeloSubNodo);
+        }
+        for (Produto produto: categoria.getProdutos()) {
+            modeloSubNodo = new DefaultMutableTreeNode(produto);
+            modeloSubNodo.setAllowsChildren(false);
+            modeloNodo.add(modeloSubNodo);
+        }
+        return modeloNodo;
+    }
+
+    private void atualizaArvoreCategorias() {
+        DefaultMutableTreeNode modeloNodoRaiz = atualizaModeloSubcategoria(model.getCategoriaRaiz());
+        DefaultTreeModel modeloArvore = new DefaultTreeModel(modeloNodoRaiz);
+        arvoreCategorias.setModel(modeloArvore);
+    }
+    
     @Override
     public void mostre() {
         setVisible(true);
@@ -487,32 +491,5 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
 
     {
         autenticacao = null;
-    }
-
-    private void atualizeMenu() {
-        menuMercado.setEnabled(autenticacao != null);
-        itemSistemaAutenticar.setEnabled(autenticacao == null);
-    }
-
-    private DefaultMutableTreeNode atualizaModeloSubcategoria(Categoria categoria) {
-        DefaultMutableTreeNode modeloNodo = new DefaultMutableTreeNode(categoria);
-        DefaultMutableTreeNode modeloSubNodo;
-        for (Categoria subCategoria: categoria.getSubcategorias()) {
-            modeloSubNodo = atualizaModeloSubcategoria(subCategoria);
-            modeloSubNodo.setAllowsChildren(true);
-            modeloNodo.add(modeloSubNodo);
-        }
-        for (Produto produto: categoria.getProdutos()) {
-            modeloSubNodo = new DefaultMutableTreeNode(produto);
-            modeloSubNodo.setAllowsChildren(false);
-            modeloNodo.add(modeloSubNodo);
-        }
-        return modeloNodo;
-    }
-
-    private void atualizaArvoreCategorias() {
-        DefaultMutableTreeNode modeloNodoRaiz = atualizaModeloSubcategoria(model.getCategoriaRaiz());
-        DefaultTreeModel modeloArvore = new DefaultTreeModel(modeloNodoRaiz);
-        arvoreCategorias.setModel(modeloArvore);
     }
 }
