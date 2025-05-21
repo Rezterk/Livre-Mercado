@@ -18,7 +18,7 @@ import model.categoria_produto.Categoria;
 import model.categoria_produto.Produto;
 import model.cliente.Cliente;
 import model.fabrica.Fabrica_Grafica;
-import view.Cliente_View;
+import view.Cliente_Table_View;
 import view.Credencial_View;
 import view.LivreMercado_View;
 
@@ -375,16 +375,15 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     }//GEN-LAST:event_itemSistemaSairActionPerformed
 
     private void itemMercadoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoClientesActionPerformed
-        // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);       
-        Cliente_View clienteView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Cliente_View(this, true, null);
+        //Cliente_View clienteView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Cliente_View(this, true, null);
+        //clienteView.mostre();
+        //Cliente novoCliente = clienteView.getModel();
+        //if (novoCliente != null) {
+        //    JOptionPane.showMessageDialog(this, "Novo cliente foi criado", "Cliente", JOptionPane.PLAIN_MESSAGE);
+        //    model.adicionarCliente(novoCliente);
+        //}
+        Cliente_Table_View clienteView = ((Fabrica_Grafica) Fabrica.GetViewFabricaConcreta()).new_Cliente_Table_View(this, true, model.getClientes());
         clienteView.mostre();
-        Cliente novoCliente = clienteView.getModel();
-        if (novoCliente != null) {
-            JOptionPane.showMessageDialog(this, "Novo cliente foi criado", "Cliente", JOptionPane.PLAIN_MESSAGE);
-            model.adicionarCliente(novoCliente);
-        }
-        // TODO: modificar para tela de Cliente Table
     }//GEN-LAST:event_itemMercadoClientesActionPerformed
 
     private void itemMercadoCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoCategoriasActionPerformed
@@ -395,10 +394,7 @@ public class LivreMercado_View_Grafico extends javax.swing.JFrame implements Liv
     private void itemMercadoProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMercadoProdutosActionPerformed
         // TODO add your handling code here:
         // atualizaArvoreCategorias();
-        //JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
-        // TODO: modificar para tela de Cliente Table
-        Cliente_Table_View_Grafico clienteView = new Cliente_Table_View_Grafico(this, true, model.getClientes());
-        clienteView.mostre();
+        JOptionPane.showMessageDialog(this, "Essa funcionalidade ainda nao foi implementada", "Ops...", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_itemMercadoProdutosActionPerformed
 
     private void textPesquisaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPesquisaProdutosActionPerformed

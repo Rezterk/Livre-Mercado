@@ -4,6 +4,7 @@
  */
 package model.fabrica;
 
+import java.util.List;
 import model.Fabrica;
 import model.LivreMercado;
 import model.autenticador.Autenticador_if;
@@ -11,6 +12,7 @@ import model.autenticador.Credencial_if;
 import model.cliente.Cliente;
 import model.cliente.Endereco;
 import view.Autenticador_View;
+import view.Cliente_Table_View;
 import view.Cliente_View;
 import view.LivreMercado_View;
 import view.terminal.Autenticador_View_Textual;
@@ -46,6 +48,11 @@ public class Fabrica_Textual extends Fabrica {
 
     @Override
     public Endereco_View new_Endereco_View(Endereco model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Cliente_Table_View new_Cliente_Table_View(List<Cliente> model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

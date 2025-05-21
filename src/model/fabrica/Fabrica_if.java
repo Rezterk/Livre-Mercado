@@ -4,6 +4,7 @@
  */
 package model.fabrica;
 
+import java.util.List;
 import view.Cliente_View;
 import model.LivreMercado;
 import model.autenticador.Autenticador_if;
@@ -11,6 +12,7 @@ import model.autenticador.Credencial_if;
 import model.cliente.Cliente;
 import model.cliente.Endereco;
 import view.Autenticador_View;
+import view.Cliente_Table_View;
 import view.LivreMercado_View;
 import view.Credencial_View;
 import view.Endereco_View;
@@ -25,5 +27,6 @@ public interface Fabrica_if {
     public Autenticador_View new_Autenticador_View(Autenticador_if model); 
     public Credencial_View new_Credencial_View(Credencial_if model);
     public Cliente_View new_Cliente_View(Cliente model);
+    public Cliente_Table_View new_Cliente_Table_View(List<Cliente> model);
     public Endereco_View new_Endereco_View(Endereco model);
 }
