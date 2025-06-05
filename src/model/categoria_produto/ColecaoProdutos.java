@@ -2,6 +2,8 @@ package model.categoria_produto;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.memento.ColecaoProdutosCaretaker;
+import model.memento.ColecaoProdutosMemento;
 
 /**
  * Classe que representa uma coleção de itens de produtos.
@@ -9,6 +11,7 @@ import java.util.List;
  */
 public class ColecaoProdutos {
 
+    private ColecaoProdutosCaretaker caretaker;
     /** Lista de itens de produtos. */
     private List<ItemProduto> itens;
 
@@ -17,6 +20,12 @@ public class ColecaoProdutos {
      */
     public ColecaoProdutos() {
         this.itens = new ArrayList<ItemProduto>();
+        createMemento();
+    }
+    
+    private void setItens(List<ItemProduto> itens) {
+        this.itens.clear();
+        this.itens.addAll(itens);
     }
 
     /**
@@ -58,6 +67,20 @@ public class ColecaoProdutos {
             total += item.getProduto().getPrecoBase() * item.getQuantidade();
         }
         return total;
+    }
+    
+    public void createMemento() {
+        caretaker.saveMemento(new ColecaoProdutosMemento(itens));
+    }
+    
+    public void undo() {
+        ColecaoProdutosMemento mem = caretaker.undo();
+        setItens(mem.getState());
+    } 
+    
+    public void redo() {
+        ColecaoProdutosMemento mem = caretaker.redo();
+        setItens(mem.getState());
     }
 
     @Override
